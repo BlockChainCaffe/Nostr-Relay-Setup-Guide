@@ -2,7 +2,9 @@
 
 ## Intro
 
-This guide will help you setup a Nostr relay on Amazon AWS EC2 server.
+This is a step-by-step, complete guide on how to set up a Nostr relay with Nginx reverse proxy, SSL/TSL with some extra info on how to control and administer it. 
+And **no, there is no way you can do that properly in "5 minutes"** 
+The steps are based mostly on Amazon AWS EC2 instance but it can be easilly applied to any other VPS provider like DigitalOcean, OVH, Linode etc...
 It will use [nostr-rs-relay](https://github.com/scsibug/nostr-rs-relay), a Rust implementation that uses SQLite database.
 
 ## Requirements
@@ -10,7 +12,7 @@ It will use [nostr-rs-relay](https://github.com/scsibug/nostr-rs-relay), a Rust 
   - AWS account with some cash on it **OR**
       - any other cloud/VPS provider will do, just change this steps
         accordingly
-  - root privileges
+  - root privileges (unless otherwise specified all commands are executed as root)
   - a domain you own and can set DNS recors
       - in this guide we'll pretend is ***nostr.domainname.com***
 
