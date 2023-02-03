@@ -76,7 +76,7 @@ cargo --version
 ### Install dependecies
 
 ``` bash
-apt-get install certbot build-essential sqlite3 libsqlite3-dev libssl-dev pkg-config nginx -y
+apt-get install certbot build-essential sqlite3 libsqlite3-dev libssl-dev pkg-config nginx git -y
 apt-get install net-tools whois -y
 ```
 
