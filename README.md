@@ -161,7 +161,7 @@ chown -R nostr:nostr /opt/nostr-data
 
 ### Systemd run script
 
-Create a file **/etc/systemd/systemd/nostr-relay.service** with the following content
+Create a file **/etc/systemd/system/nostr-relay.service** with the following content
 
 ``` bash
 [Unit]
