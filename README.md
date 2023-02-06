@@ -448,7 +448,7 @@ journalctl -f | grep --line-buffered nostr_rs_relay | cut -d' ' -f 10,12-100
 #### Nginx logs
 
 ``` bash
-tail -f /var/log/nginx/*
+tail -f /var/log/nginx/*.log
 ```
 
 You can fire up a **tmux** session if you don't want to start multiple consoles
