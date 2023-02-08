@@ -55,8 +55,8 @@ Go to your Domain/DNS provider and use one of the following options:
 
 ``` bash
 
-apt get update
-apt get upgrade -y
+apt-get update
+apt-get upgrade -y
 ```
 
 ### Install rust tools (press 1 when asked)
