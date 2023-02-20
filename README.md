@@ -4,7 +4,7 @@
 
 This is a step-by-step, complete guide on how to set up a Nostr relay with Nginx reverse proxy, SSL/TSL with some extra info on how to control and administer it. 
 And **no, there is no way you can do that properly in "5 minutes"** 
-The steps are based mostly on Amazon AWS EC2 instance but it can be easilly applied to any other VPS provider like DigitalOcean, OVH, Linode etc...
+The steps are based mostly on Amazon AWS EC2 instance but it can be easily applied to any other VPS provider like DigitalOcean, OVH, Linode etc...
 It will use [nostr-rs-relay](https://github.com/scsibug/nostr-rs-relay), a Rust implementation that uses SQLite database.
 
 ## Requirements
@@ -13,12 +13,12 @@ It will use [nostr-rs-relay](https://github.com/scsibug/nostr-rs-relay), a Rust 
       - any other cloud/VPS provider will do, just change this steps
         accordingly
   - root privileges (unless otherwise specified all commands are executed as root)
-  - a domain you own and can set DNS recors
+  - a domain you own and can set DNS records
       - in this guide we'll pretend is ***nostr.domainname.com***
 
 ## Ec2 rollout
 
-  - Pick your EC2 instace, for example: 
+  - Pick your EC2 instance, for example: 
       - t3micro - 2vCPU - 1GiB Ram - 8Gib HD
       - x86 
       - Linux Ubuntu
@@ -26,7 +26,7 @@ It will use [nostr-rs-relay](https://github.com/scsibug/nostr-rs-relay), a Rust 
 <!-- end list -->
   - If on AWS:
       - generate and store the keypair and store it
-      - select/create a security grooup that **allows ssh, http, https**
+      - select/create a security group that **allows ssh, http, https**
       - launch the instance
       - connect to the instance with ssh (ex:)
 <!-- end list -->
@@ -37,7 +37,7 @@ ssh -i your-key.pem ubuntu@ec2-X-XXX-XXX-XXX.eu-central-1.compute.amazonaws.com
 
   - otherwise: (DigitalOcean, OVH...)
       - get means to access the VPS via ssh
-      - check with your provider or manually setup thefirewall (iptables, ufw...)
+      - check with your provider or manually setup the firewall (iptables, ufw...)
       - connect to the instance with ssh
 
 
@@ -73,7 +73,7 @@ rustc --version
 cargo --version
 ```
 
-### Install dependecies
+### Install dependencies
 
 ``` bash
 apt-get install certbot build-essential sqlite3 libsqlite3-dev libssl-dev pkg-config nginx git -y
@@ -116,7 +116,7 @@ wget https://raw.githubusercontent.com/scsibug/nostr-rs-relay/master/config.toml
  Update / change the configuration file with your favourite editor     (ex **vim** o **nano**)
  Parameters you might want to change:
   - **relay\_url** : put ***nostr.domainname.com*** ( ⚠️ replace with the URL of the domain name you own and that points to the server)
-  - **name** : dont' be shy ... 
+  - **name** : don't be shy ... 
   - **description** : ... introduce yourself
   - **pubkey** : your public key
   - **contact** : your email
@@ -250,14 +250,14 @@ Enable and start the site
 ``` bash
 ln -s /etc/nginx/sites-available/nostr-relay.conf /etc/nginx/sites-enabled/.
 rm -f /etc/nginx/sites-enabled/default
-nginx -t # must say "ok... test succcessful"
+nginx -t # must say "ok... test successful"
 nginx -s reload
 ```
 
 ### Run an external check
 
 From another pc/server/vps (your laptop) check that you can connect to
-nostr trought nginx
+nostr through nginx
 
 ``` bash
 wget nostr.domainname.com  ## <<=== CHANGE THIS
@@ -385,7 +385,7 @@ server  {
 }
 ```
 
-**NOTE** : remember to change all the occurencies of ***nostr.domainname.com*** with your domain
+**NOTE** : remember to change all the occurrences of ***nostr.domainname.com*** with your domain
 
 Check the new configuration and reload it into nginx
 
@@ -421,7 +421,7 @@ Saving to: ‘index.html.1’
 index.html.1                     100%[=============================>]      37  --.-KB/s    in 0s      
 ```
 
-**NOTE** : the test il like the previous one, just this time it tryes to connect to http first and get redirected (301) to https, then in https the file is download and its content are the same as before
+**NOTE** : the test is like the previous one, just this time it tries to connect to http first and get redirected (301) to https, then in https the file is download and its content are the same as before
 
 ``` bash
 cat index.html 
@@ -443,7 +443,7 @@ To keep an eye on what's goin on simply ask the logs
 journalctl -f | grep --line-buffered nostr_rs_relay | cut -d' ' -f 10,12-100 
 ```
 
-... you might want to set an alias for this. This will show the logs of nostr relay in real time. Presso CTRL+C to stop it
+... you might want to set an alias for this. This will show the logs of nostr relay in real time. Press CTRL+C to stop it
 
 #### Nginx logs
 
