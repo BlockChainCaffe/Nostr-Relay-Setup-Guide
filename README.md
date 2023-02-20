@@ -123,6 +123,7 @@ wget https://raw.githubusercontent.com/scsibug/nostr-rs-relay/master/config.toml
   - **tracing** : ⚠️ leave commented otherwise it trows errors and won't start
   - **data\_directory** : set it to **/opt/nostr-data/**
   - **address** : set it to **127.0.0.1** as we will later use nginx as a proxy
+  - **remote_ip_header** : set it to **"x-forwarded-for"** for logging real client IP addresses
 
 
 Go back to user root
