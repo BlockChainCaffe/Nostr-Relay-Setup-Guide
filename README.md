@@ -136,10 +136,11 @@ su - nostr
 ### Download the sample configuration file
 
 ``` bash
+cd /opt/nostr-rs-relay
 wget https://raw.githubusercontent.com/scsibug/nostr-rs-relay/master/config.toml
 ```
 
- Update / change the configuration file with your favourite editor     (ex **vim** o **nano**)
+ Update / change the ```/opt/nostr-rs-relay/config.toml ``` configuration file with your favourite editor     (ex **vim** o **nano**)
  Parameters you might want to change:
   - **relay\_url** : put ***nostr.domainname.com*** ( ⚠️ replace with the URL of the domain name you own and that points to the server)
   - **name** : don't be shy ... 
