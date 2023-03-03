@@ -12,9 +12,12 @@ It will use [nostr-rs-relay](https://github.com/scsibug/nostr-rs-relay), a Rust 
   - AWS account with some cash on it **OR**
       - any other cloud/VPS provider will do, just change this steps
         accordingly
-  - root privileges (unless otherwise specified all commands are executed as root)
+  - root privileges 
   - a domain you own and can set DNS records
       - in this guide we'll pretend is ***nostr.domainname.com***
+
+> **Please note**: Unless otherwise specified all commands are executed as **root**.
+
 
 ## Ec2 rollout
 
@@ -96,6 +99,29 @@ Compilation can take about 10 minutes or so and produces a binary of about 19mb
 
 ``` bash
 install target/release/nostr-rs-relay /usr/local/bin
+```
+
+### Clean compilation artifacts
+Since the instance you are using has little disk space (mine has 8Gb total) you don't want to waste valuable disk space and save it for nostr messages. Once successfully compiled the compilation artifacts can use up to **2Gb** of space.
+
+In order to reclaim that space, once the compiled binaries are installed and moved under /usr/local/bin, you can clean them up with
+
+```bash
+cargo clean
+```
+or (last ditch)
+
+```bash
+rm -Rf /opt/nostr-rs-relay/target
+```
+
+### Uninstall compiler tools
+Another surce of wasted space (other 2Gb) is in the /root/.rustup folder.
+
+You want to remove/disinstall that too
+
+```bash
+rm -Rf /root/.rustup
 ```
 
 ## Nostr Configuration
@@ -485,8 +511,6 @@ Send some messages, see the log get them in (almost) real time and find them in 
 ## Links
 
   - <https://github.com/scsibug/nostr-rs-relay>
-
-<!-- end list -->
 
   - <https://andreneves.xyz/p/set-up-a-nostr-relay-server-in-under> (5 minutes my ass)
   - <https://www.w3irdrobot.codes/posts/deploying-a-nostr-relay/>
